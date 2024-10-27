@@ -1,6 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
-import router from './routes/user.routes.js'
+import tasksRouter from './routes/tasks.routes.js'
+import authRoutes from './routes/auth.routes.js'
 
 const app = express()
 
@@ -9,7 +10,10 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
-app.use('/', router)
+//Routes
+app.use('/api', tasksRouter)
+app.use('/api', authRoutes)//authentications routes....!
+
 app.use((err, req, res, next) => {
     res.status(500).json({
         status: 'status error',
