@@ -1,26 +1,17 @@
 import { Router } from "express";
+import { createTask, deleteTask, getTaskId, getAllTasks, updateTaskId } from "../controllers/tasks.controller.js";
 
 const router = Router()
 
-router.get('/tasks', (req, res) => {
-    res.status(200).json({message: 'Getting Tasks'})
-})
+router.get('/tasks', getAllTasks)
 
-router.get('/tasks/:id', (req, res) => {
-    res.status(200).json({message: 'Getting One Task by ID'})
-})
+router.get('/tasks/:id', getTaskId)
 
-router.post('/tasks', (req, res) => {
-    res.status(200).json({message: 'Created Tasks'})
-})
+router.post('/tasks', createTask)
 
-router.put('/tasks/:id', (req, res) => {
-    res.status(200).json({message: 'Updating Tasks'})
-})
+router.put('/tasks/:id', updateTaskId)
 
-router.delete('/tasks/:id', (req, res) => {
-    res.status(200).json({message: 'Deleting Tasks'})
-})
+router.delete('/tasks/:id', deleteTask)
 
 
 
