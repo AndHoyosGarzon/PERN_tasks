@@ -3,7 +3,9 @@ import pool from "../db.js";
 export const getAllTasks = async (req, res, next) => {
   console.log(req.userId);
   //Error handling makes it library EXPRESS-PROMISE-ROUTER...
-  const result = await pool.query("SELECT * FROM task");
+  const result = await pool.query("SELECT * FROM task WHERE user_id = $1", [
+    req.userId,
+  ]);
   res.status(200).json(result.rows);
 };
 
@@ -24,8 +26,8 @@ export const createTask = async (req, res, next) => {
   try {
     //added task in database postgress
     const { rows } = await pool.query(
-      "INSERT INTO task (title, description) VALUES ($1, $2) RETURNING *",
-      [title, description]
+      "INSERT INTO task (title, description, user_id) VALUES ($1, $2, $3) RETURNING *",
+      [title, description, req.userId]
     );
 
     return res.status(201).json(rows[0]);
