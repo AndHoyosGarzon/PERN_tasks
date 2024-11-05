@@ -48,7 +48,8 @@ export const signup = async (req, res, next) => {
 
     //We use the cookies
     res.cookie("token", token, {
-      httpOnly: true, //Not access with code javascript
+      // httpOnly: true, //Not access with code javascript
+      secure: true,
       sameSite: "none",
       maxAge: 24 * 60 * 60 * 1000, //the date is format milliseconds
     });
