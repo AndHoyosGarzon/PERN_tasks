@@ -7,20 +7,27 @@ import TasksPage from "./pages/TasksPage";
 import TaskFormPage from "./pages/TaskFormPage";
 import ProfilePage from "./pages/ProfilePage";
 import NotFound from "./pages/NotFound";
+import NavBar from "./components/navbar/NavBar";
+import { Container } from "./components/ui/";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/about" element={<AboutPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/tasks" element={<TasksPage />} />
-      <Route path="/task/new" element={<TaskFormPage />} />
-      <Route path="/task/1/edit" element={<TaskFormPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      <NavBar />
+      <Container>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/tasks" element={<TasksPage />} />
+          <Route path="/task/new" element={<TaskFormPage />} />
+          <Route path="/task/1/edit" element={<TaskFormPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Container>
+    </>
   );
 }
 
