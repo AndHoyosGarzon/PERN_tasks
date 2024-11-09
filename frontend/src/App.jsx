@@ -7,7 +7,7 @@ import TasksPage from "./pages/TasksPage";
 import TaskFormPage from "./pages/TaskFormPage";
 import ProfilePage from "./pages/ProfilePage";
 import NotFound from "./pages/NotFound";
-import NavBar from "./components/navbar/NavBar";
+import NavBar from "./components/navbar/Navbar";
 import { Container } from "./components/ui/";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
