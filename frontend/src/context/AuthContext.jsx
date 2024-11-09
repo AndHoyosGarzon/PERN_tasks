@@ -48,11 +48,16 @@ export function AuthProvider({ children }) {
       return response.data;
     } catch (error) {
       if (Array.isArray(error.response.data)) {
-        console.log(error.response.data);
         return setError(error.response.data);
       }
       setError([error.response.data.message]);
     }
+  };
+
+  const signout = async () => {
+    await client.post("/signout");
+    setUser(null);
+    setIsAuth(false);
   };
 
   useEffect(() => {
@@ -60,20 +65,28 @@ export function AuthProvider({ children }) {
       client
         .get("/profile")
         .then((res) => {
-          console.log(res.data);
           setUser(res.data);
           setIsAuth(true);
         })
         .catch((err) => {
-          console.log(err);
           setUser(null);
           setIsAuth(false);
         });
     }
   }, []);
 
+  useEffect(() => {
+    const clean = setTimeout(() => {
+      setError(null);
+    }, 5000);
+
+    return () => clearTimeout(clean);
+  }, [error]);
+
   return (
-    <AuthContext.Provider value={{ user, isAuth, error, signup, signin }}>
+    <AuthContext.Provider
+      value={{ user, isAuth, error, signup, signin, signout }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -26,7 +26,7 @@ function LoginPage() {
     const user = await signin(data);
 
     if (user) {
-      navigate("/profile");
+      navigate("/tasks");
     }
   });
 
@@ -34,8 +34,10 @@ function LoginPage() {
     <Container className="h-[calc(100vh-7rem)] flex justify-center items-center">
       <Card>
         {error &&
-          error.map((err) => (
-            <p className="text-red-500 text-center font-bold">{err}</p>
+          error.map((err, idx) => (
+            <p key={idx} className="text-red-500 text-center font-bold">
+              {err}
+            </p>
           ))}
 
         <h1 className="text-4xl font-bold my-2 text-center">Sign in</h1>
@@ -61,7 +63,7 @@ function LoginPage() {
           <Button>Sign in</Button>
 
           <div className="flex justify-between my-4">
-            <p>Don't have an account? </p>
+            <p className="mr-4">Don't have an account? </p>
             <Link className="text-blue-600 font-bold" to="/register">
               Register
             </Link>

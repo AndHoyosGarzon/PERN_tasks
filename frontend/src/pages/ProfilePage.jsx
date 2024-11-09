@@ -7,7 +7,7 @@ function ProfilePage() {
   return (
     <div>
       <h1 className="text-center text-5xl">WELCOME</h1>
-      <p className="font-bol text-2xl bg-blue-700">{user && user.name}</p>
+      <pre>{JSON.stringify(user, null, 2)}</pre>
     </div>
   );
 }

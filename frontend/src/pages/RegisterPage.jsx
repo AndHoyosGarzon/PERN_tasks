@@ -19,10 +19,9 @@ export function RegisterPage() {
   const { signup, error } = useAuth();
 
   const onSubmit = handleSubmit(async (data) => {
-    const user = await signup(data);
-    if (user) {
-      navigate("/login");
-    }
+    await signup(data);
+
+    navigate("/login");
   });
 
   return (
@@ -62,7 +61,7 @@ export function RegisterPage() {
           <Button>Register</Button>
 
           <div className="flex justify-between my-4">
-            <p>Already have an account? </p>
+            <p className="mr-4">Already have an account? </p>
             <Link className="text-blue-600 font-bold" to="/login">
               Login
             </Link>
