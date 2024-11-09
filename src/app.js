@@ -4,13 +4,14 @@ import tasksRouter from "./routes/tasks.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { ORIGIN } from "./config.js";
 
 const app = express();
 
 //middleware
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ORIGIN,
     credentials: true,
   })
 );
